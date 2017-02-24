@@ -34,6 +34,16 @@ return [
                     ],
                 ],
             ],
+            'earthquakes' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/earthquakes[/:action]',
+                    'defaults' => [
+                        'controller' => Controller\EarthquakeController::class,
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
