@@ -7,8 +7,8 @@
 
 namespace Application;
 
-use Zend\Router\Http\Literal;
-use Zend\Router\Http\Segment;
+use Zend\Mvc\Router\Http\Literal;
+use Zend\Mvc\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
@@ -35,9 +35,9 @@ return [
                 ],
             ],
             'earthquakes' => [
-                'type'    => Segment::class,
+                'type'    => Literal::class,
                 'options' => [
-                    'route'    => '/earthquakes[/:action]',
+                    'route'    => '/earthquakes',
                     'defaults' => [
                         'controller' => Controller\EarthquakeController::class,
                         'action'     => 'index',
@@ -47,9 +47,17 @@ return [
         ],
     ],
     'controllers' => [
-        'factories' => [
-            Controller\IndexController::class => InvokableFactory::class,
+        'invokables' => [
+            Controller\IndexController::class => Controller\IndexController::class,
         ],
+        'factories' => [
+            Controller\EarthquakeController::class => Controller\EarthquakeControllerFactory::class,
+        ],
+    ],
+    'service_manager' => [
+        'invokables' => [
+            'Application\Service\EarthquakeService' => Service\EarthquakeService::class,
+        ]
     ],
     'view_manager' => [
         'display_not_found_reason' => true,

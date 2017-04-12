@@ -1,0 +1,16 @@
+<div class="row">
+    <h1>Earthquake service</h1>
+    <br>
+    <h3>Here there's a list of all earthquakes around the world from the <a href="http://earthquake.usgs.gov">USGS</a></h3>
+    <br>
+    <br>
+    <?php foreach ($this->earthquakes as $key => $value) { ?>
+
+        <div class="row">
+            <p class="count"><?php echo $key ?></p>
+            <p class="place"><?php echo $value['place'] ?></p>
+            <p class="mag"><?php echo $value['mag'] ?></p>
+            <p class="time"><?php echo $value['time'] ?></p>
+        </div>
+    <?php } ?>
+</div>
